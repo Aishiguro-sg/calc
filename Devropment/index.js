@@ -1,56 +1,52 @@
-//テキストを入力した時　アクションを起こす
-const e = document.getElementById("textForm");
-let textForm = e.value;
-let textForms = textForm.split(/ +/);
-
-
 //ボタンが押された時　アクションを起こす
 const btn = document.getElementById("button");
 
-//onclick
 function calculate() {
-    // input要素から計算式を取得
-    var expression = document.getElementById("textForm").value;
+
+        //テキストを入力した時　アクションを起こす// input要素から計算式を取得
+        const textForm = document.getElementById("textForm").value;
+        //const e = document.getElementById("textForm");
+       // let textForm = e.value;
+    const resultForm = document.getElementById("resultForm");
   
-    // 計算式を分解して演算子とオペランドに分ける
-    var tokens = expression.split(/([\+\-\*\/])/);
+    // 計算式をスペースで分解
+    var tokens = textForm.split(/ +/);
   
     // 計算結果を格納する変数
     var result = 0;
-    var operator = '';
-    
+  
     // 最初のオペランドを初期値として設定
-    if (tokens.length > 0) {
-      result = parseFloat(tokens[0]);
+    if (tokens.length !== 3) {
+       resultForm.value = "計算式が不正です";
+        //document.getElementById("resultForm").value = "計算式が不正です";
+        return;
     }
   
     // 計算を実行
-    for (var i = 1; i < tokens.length; i += 2) {
-      operator = tokens[i];
-      var operand = parseFloat(tokens[i + 1]);
-      
+    let value1 = parseInt(tokens[0]);
+    let operator = tokens[1];
+    var value2 = parseInt(tokens[2]);
+  
       switch (operator) {
         case '+':
-          result += operand;
+          result = value1 + value2;
           break;
         case '-':
-          result -= operand;
+          result = value1 - value2;
           break;
         case '*':
-          result *= operand;
+          result = value1 * value2;
           break;
         case '/':
-          if (operand !== 0) {
-            result /= operand;
+          if (value2 !== 0) {
+            result = value1 / value2;
           } else {
             // ゼロで割り算しようとした場合のエラーメッセージ
-            document.getElementById("resultForm").textContent = "ゼロで割ることはできません";
+            document.getElementById("resultForm").value = "error";
             return;
           }
           break;
       }
+         // 計算結果をHTMLに表示
+    document.getElementById("resultForm").value = result;
     }
-  
-    // 計算結果をHTMLに表示
-    document.getElementById("resultForm").textContent = "計算結果: " + result;
-  }
