@@ -1,0 +1,45 @@
+.calculation{
+    height: 200% auto;
+    background-color: #99CCCC;
+    padding: 0 3%;
+    font-weight: bold;
+}
+
+.calculation p{
+    float: left;
+    font-size: 13px;
+}
+
+.t{
+    width: 100px;
+    font-size: 18px;
+    border: 1px solid #dee7ec;
+    margin: 10px 3px 10px 2px;
+    border-radius:4px;
+}
+.message{
+   transition: all 1s;
+   box-shadow: 0px 3px rgba(28, 34, 36, 0.877);;
+}
+.message:hover{
+    opacity: 0.5;
+}
+.message:active{
+    opacity: 0;
+    box-shadow: none;
+}
+
+.message{
+    color: #d3dfdf;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align:center;
+    border-radius:25px;
+    font-size: 12px;
+}
+.all{
+    width: 100px;
+    font-size: 18px;
+    border: 1px solid #dee7ec;
+    margin: 10px 3px 10px 2px;
+    border-radius:4px;
+}

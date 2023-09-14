@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>演習課題</title>
+
+<input type="text" id="expressionInput" placeholder="計算式を入力">
+<button onclick="calculateExpression()">計算</button>
+<p id="result">計算結果: </p>
+
+</head><body>
+
+<script>
+function calculateExpression() {
+    // input要素から計算式を取得
+    var expression = document.getElementById("expressionInput").value;
+  
+    // 計算式を分解して演算子とオペランドに分ける
+    var tokens = expression.split(/([\+\-\*\/])/);
+  
+    // 空白文字を取り除く
+    tokens = tokens.filter(function(token) {
+      return /\S/.test(token);
+    });
+  
+    // 計算結果を格納する変数
+    var result = 0;
+    var operator = '';
+    
+    // 最初のオペランドを初期値として設定
+    if (tokens.length > 0) {
+      result = parseFloat(tokens[0]);
+    }
+  
+    // 計算を実行
+    for (var i = 1; i < tokens.length; i += 2) {
+      operator = tokens[i];
+      var operand = parseFloat(tokens[i + 1]);
+      
+      switch (operator) {
+        case '+':
+          result += operand;
+          break;
+        case '-':
+          result -= operand;
+          break;
+        case '*':
+          result *= operand;
+          break;
+        case '/':
+          if (operand !== 0) {
+            result /= operand;
+          } else {
+            // ゼロで割り算しようとした場合のエラーメッセージ
+            document.getElementById("result").textContent = "ゼロで割ることはできません";
+            return;
+          }
+          break;
+      }
+    }
+  
+    // 計算結果をHTMLに表示
+    document.getElementById("result").textContent = "計算結果: " + result;
+  }
+</script>
+</body>
+</html>
